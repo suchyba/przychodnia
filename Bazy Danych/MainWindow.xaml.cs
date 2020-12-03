@@ -33,7 +33,7 @@ namespace Bazy_Danych
         {
             int login;
 
-            if(!Int32.TryParse(userLogin.Text, out login))
+            if (!Int32.TryParse(userLogin.Text, out login))
             {
                 Wynik.Content = "Logowanie nie poprawne";
 
@@ -43,42 +43,35 @@ namespace Bazy_Danych
 
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
-            var user = dataBaseContext.Lekarze.Where(p => p.PESEL == login);
+            Lekarz user = dataBaseContext.Lekarze.Where(p => p.PESEL == login).FirstOrDefault();
 
-            if(user.Count() != 0)
+            if (user != null)
             {
-                foreach(Lekarz lekarz in user)
+
+                if (user.Password == password)
                 {
-                    if (lekarz.Password == password)
-                    {
-                        Wynik.Content = "Logowanie poprawne Lekarz";
-                        doctorForm = new DoctorForm();
-                        doctorForm.ShowDialog();
-                        return;
-                    }
-                    
+                    Wynik.Content = "Logowanie poprawne Lekarz";
+                    doctorForm = new DoctorForm(user.PESEL);
+                    doctorForm.ShowDialog();
+                    return;
                 }
+
                 Wynik.Content = "Logowanie nie poprawne";
                 return;
             }
 
-            var user2 = dataBaseContext.Pielegniarki.Where(p => p.PESEL == login);
+            Pielegniarka user2 = dataBaseContext.Pielegniarki.Where(p => p.PESEL == login).FirstOrDefault();
 
-            if(user2.Count() != 0)
+            if (user2 != null)
             {
-                foreach(Pielegniarka pielegniarka in user2)
+
+                if (user2.Password == password)
                 {
-                    if (pielegniarka.Password == password)
-                    {
-                        Wynik.Content = "Logowanie poprawne Pielegniarka";
-                        nurseForm = new NurseForm();
-                        nurseForm.ShowDialog();
-                        return;
-                    }
-                    
+                    Wynik.Content = "Logowanie poprawne Pielegniarka";
+                    nurseForm = new NurseForm();
+                    nurseForm.ShowDialog();
+                    return;
                 }
-                Wynik.Content = "Logowanie nie poprawne";
-                return;
 
             }
             Wynik.Content = "Logowanie nie poprawne";
