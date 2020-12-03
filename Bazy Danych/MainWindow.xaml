@@ -1,0 +1,18 @@
+﻿<Window x:Class="Bazy_Danych.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bazy_Danych"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
+        <Label Name="Wynik"></Label>
+        <Label HorizontalAlignment="Center">Login: </Label>
+        <TextBox Name="userLogin"></TextBox>
+        <Label HorizontalAlignment="Center">Hasło:</Label>
+        <PasswordBox Name="userPassword"></PasswordBox>
+        <Button Click="ZalogujBtn_Click">Zaloguj</Button>
+        <Button Click="Button_Click">Uzupełnij baze danych</Button>
+    </StackPanel>
+</Window>

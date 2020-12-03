@@ -1,0 +1,80 @@
+﻿<Window x:Class="Bazy_Danych.NurseForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bazy_Danych" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="NurseForm" Height="500" Width="800">
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Label Name="wizytaLabel">Dodaj wizyte</Label>
+            <Label>PESEL pacjeta</Label>
+            <TextBox Name="PESELTextBox"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label>PESEL lekarza</Label>
+            <TextBox Name="DoctorPESELTextBox"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label>Data wizyty</Label>
+            <xctk:DateTimePicker Name="DateTextBox"></xctk:DateTimePicker>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <Label>Opis: </Label>
+            <TextBox Name="opisTextBox"></TextBox>
+            <Button Click="WizytaBtn_Click">Umów na wizytę</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.RowSpan="4">
+            <Label>Dodaj pacjeta</Label>
+            <Label>PESEL</Label>
+            <TextBox Name="PESELAddPatientBox"></TextBox>
+            <Label>Imie</Label>
+            <TextBox Name="NameAddPatientBox"></TextBox>
+            <Label>Nazwisko</Label>
+            <TextBox Name="SurnameAddPatientBox"></TextBox>
+            <Label>Adres zamieszka</Label>
+            <Label>Miasto</Label>
+            <TextBox Name="CityAddPetientBox"></TextBox>
+            <Label>Ulica</Label>
+            <TextBox Name="StreetAddPetientBox"></TextBox>
+            <Label>Kod pocztowy</Label>
+            <TextBox Name="NumberAddPetientBox"></TextBox>
+            <Label>Numer domu</Label>
+            <TextBox Name="HouseNumberAddPetientBox"></TextBox>
+            <Label>Numer mieszkania</Label>
+            <TextBox Name="FlatNumberAddPetientBox"></TextBox>
+            <Button Click="AddPatientBtn_Click">Dodaj pacjeta</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.RowSpan="4">
+            <Label>Wyszukaj pacjeta</Label>
+            <Label>PESEL:</Label>
+            <TextBox Name="PESELFindPatient"></TextBox>
+            <Label>Imie: </Label>
+            <TextBox Name="nameFindPatient"></TextBox>
+            <Label>Nazwisko:</Label>
+            <TextBox Name="surnameFindPatient"></TextBox>
+            <Button Click="searchBtn_Click">Wyszukaj</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="3">
+            <Label>Wyniki wyszukiwania</Label>
+            <ListBox Name="findPatientListBox"></ListBox>
+        </StackPanel>
+    </Grid>
+</Window>
