@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Bazy_Danych.Model
 {
-    class Pielegniarka
+    public class Pielegniarka
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

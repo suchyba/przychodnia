@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Bazy_Danych.Model
 {
-    class Wizyta
+    public class Wizyta
     {
         [Key]
         public int ID { get; set; }

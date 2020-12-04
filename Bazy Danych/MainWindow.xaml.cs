@@ -31,11 +31,15 @@ namespace Bazy_Danych
 
         private void ZalogujBtn_Click(object sender, RoutedEventArgs e)
         {
+            Wynik.Visibility = Visibility.Collapsed;
+            userLogin.ClearValue(TextBox.BorderBrushProperty);
+            userPassword.ClearValue(TextBox.BorderBrushProperty);
+
             int login;
 
-            if(!Int32.TryParse(userLogin.Text, out login))
+            if (!Int32.TryParse(userLogin.Text, out login))
             {
-                Wynik.Content = "Logowanie nie poprawne";
+                userLogin.BorderBrush = Brushes.Red;
 
                 return;
             }
@@ -45,43 +49,50 @@ namespace Bazy_Danych
 
             var user = dataBaseContext.Lekarze.Where(p => p.PESEL == login);
 
-            if(user.Count() != 0)
+            if (user.Count() != 0)
             {
-                foreach(Lekarz lekarz in user)
+                foreach (Lekarz lekarz in user)
                 {
                     if (lekarz.Password == password)
                     {
-                        Wynik.Content = "Logowanie poprawne Lekarz";
+                        this.Visibility = Visibility.Collapsed;
                         doctorForm = new DoctorForm();
                         doctorForm.ShowDialog();
+                        this.Visibility = Visibility.Visible;
+                        userLogin.Text = "";
+                        userPassword.Password = "";
                         return;
                     }
-                    
+
                 }
-                Wynik.Content = "Logowanie nie poprawne";
+                userPassword.BorderBrush = Brushes.Red;
                 return;
             }
 
             var user2 = dataBaseContext.Pielegniarki.Where(p => p.PESEL == login);
 
-            if(user2.Count() != 0)
+            if (user2.Count() != 0)
             {
-                foreach(Pielegniarka pielegniarka in user2)
+                foreach (Pielegniarka pielegniarka in user2)
                 {
                     if (pielegniarka.Password == password)
                     {
-                        Wynik.Content = "Logowanie poprawne Pielegniarka";
-                        nurseForm = new NurseForm();
+                        this.Visibility = Visibility.Collapsed;
+                        nurseForm = new NurseForm(pielegniarka);
                         nurseForm.ShowDialog();
+                        this.Visibility = Visibility.Visible;
+                        userLogin.Text = "";
+                        userPassword.Password = "";
                         return;
                     }
-                    
+
                 }
-                Wynik.Content = "Logowanie nie poprawne";
+                userPassword.BorderBrush = Brushes.Red;
                 return;
 
             }
-            Wynik.Content = "Logowanie nie poprawne";
+            Wynik.Content = "Podany użytkownik nie istnieje!";
+            Wynik.Visibility = Visibility.Visible;
             return;
 
         }
