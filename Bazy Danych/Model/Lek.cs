@@ -15,7 +15,12 @@ namespace Bazy_Danych.Model
         public string Dawkowanie { get; set; }
         [Required]
         public decimal Cena { get; set; }
-        public ICollection<Recepta> recepty { get; set; } =
-        new HashSet<Recepta>();
+        public ICollection<LekRecepta> recepty { get; set; } =
+        new HashSet<LekRecepta>();
+
+        public override string ToString()
+        {
+            return "Nazwa leku: "+Nazwa_leku +" Dawkowanie: "+Dawkowanie+ " Cena: "+Cena;
+        }
     }
 }

@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bazy_Danych" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="EeferralForm" Height="450" Width="800">
-    <Grid>
+        Title="EeferralForm" Height="670" Width="800">
+    <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
@@ -24,39 +24,39 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Label>Dane pajeta: </Label>
-        <Label Grid.Row="1">Imie: </Label>
-        <Label Name="referralNamePatient" Grid.Row="1" Grid.Column="1"></Label>
-        <Label Grid.Row="1" Grid.Column="2">Nazwisko:</Label>
-        <Label Name="referralSurnamePatient" Grid.Row="1" Grid.Column="3"></Label>
+        <Label Margin="5" Padding="5">Dane pajeta: </Label>
+        <Label Grid.Row="1" Margin="5" Padding="5">Imie: </Label>
+        <TextBox IsReadOnly="true" Name="referralNamePatient" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"></TextBox>
+        <Label Grid.Row="1" Grid.Column="2" Margin="5" Padding="5">Nazwisko:</Label>
+        <TextBox IsReadOnly="true" Name="referralSurnamePatient" Grid.Row="1" Grid.Column="3" Margin="5" Padding="5"></TextBox>
 
-        <Label Grid.Row="2">Dane wypisujacego lekarza:</Label>
-        <Label Grid.Row="3">Imie:</Label>
-        <Label Name="referralNameDoctor" Grid.Row="3" Grid.Column="1"></Label>
-        <Label Grid.Row="3" Grid.Column="2">Nazwisko:</Label>
-        <Label Name="referralSurnameDoctor" Grid.Row="3" Grid.Column="3"></Label>
+        <Label Grid.Row="2" Margin="5" Padding="5">Dane wypisujacego lekarza:</Label>
+        <Label Grid.Row="3" Margin="5" Padding="5">Imie:</Label>
+        <TextBox IsReadOnly="true" Name="referralNameDoctor" Grid.Row="3" Grid.Column="1" Margin="5" Padding="5"></TextBox>
+        <Label Grid.Row="3" Grid.Column="2" Margin="5" Padding="5">Nazwisko:</Label>
+        <TextBox IsReadOnly="true" Name="referralSurnameDoctor" Grid.Row="3" Grid.Column="3" Margin="5" Padding="5"></TextBox>
 
-        <Label Grid.Row="4">Nazwa zabiegu:</Label>
-        <TextBox Name="RefferNameOperation" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4"></TextBox>
-        <Label Grid.Row="5">Data wygaśniecia skierowania:</Label>
-        <xctk:DateTimePicker Name="RefferDate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4"></xctk:DateTimePicker>
-        <Label Grid.Row="6">Adres przychodni:</Label>
-        <StackPanel Grid.Row="7" Grid.ColumnSpan="4">
-            <Label>Miasto</Label>
-            <TextBox Name="CityAddPetientBox"></TextBox>
-            <Label>Ulica</Label>
-            <TextBox Name="StreetAddPetientBox"></TextBox>
-            <Label>Kod pocztowy</Label>
-            <TextBox Name="NumberAddPetientBox"></TextBox>
-            <Label>Numer domu</Label>
-            <TextBox Name="HouseNumberAddPetientBox"></TextBox>
-            <Label>Numer mieszkania</Label>
-            <TextBox Name="FlatNumberAddPetientBox"></TextBox>
+        <Label Grid.Row="4" Margin="5" Padding="5">Nazwa zabiegu:</Label>
+        <TextBox Name="RefferNameOperation" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Margin="5" Padding="5"></TextBox>
+        <Label Grid.Row="5" Margin="5" Padding="5">Data wygaśniecia skierowania:</Label>
+        <xctk:DateTimePicker Name="RefferDate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="5" Padding="5"></xctk:DateTimePicker>
+        <Label Grid.Row="6" Margin="5" Padding="5">Adres przychodni:</Label>
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="4" >
+            <Label Margin="5" Padding="5">Miasto</Label>
+            <TextBox Name="CityAddPetientBox" Margin="2" Padding="2"></TextBox>
+            <Label Margin="5" Padding="5">Ulica</Label>
+            <TextBox Name="StreetAddPetientBox" Margin="2" Padding="2"></TextBox>
+            <Label Margin="5" Padding="5">Kod pocztowy</Label>
+            <TextBox Name="NumberAddPetientBox" Margin="2" Padding="2"></TextBox>
+            <Label Margin="5" Padding="5">Numer domu</Label>
+            <TextBox Name="HouseNumberAddPetientBox" Margin="2" Padding="2"></TextBox>
+            <Label Margin="5" Padding="5">Numer mieszkania</Label>
+            <TextBox Name="FlatNumberAddPetientBox" Margin="2" Padding="2"></TextBox>
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="8" Grid.ColumnSpan="4">
-            <Button Click="AddRefferBtn_Click" Width="200" >Zatwierdz</Button>
-            <Button Click="AbordRefferBtn_Click" Grid.Row="7" Width="200">Anuluj</Button>
+            <Button Click="AddRefferBtn_Click" Width="200" Margin="5" Padding="5">Zatwierdz</Button>
+            <Button Click="AbordRefferBtn_Click" Grid.Row="7" Width="200" Margin="5" Padding="5">Anuluj</Button>
         </StackPanel>
 
     </Grid>

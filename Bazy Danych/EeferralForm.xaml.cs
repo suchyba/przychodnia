@@ -21,6 +21,7 @@ namespace Bazy_Danych
     public partial class EeferralForm : Window
     {
         public Wizyta wizyta { get; set; }
+        public EeferralForm thisForm { get; set; }
         public EeferralForm()
         {
             InitializeComponent();
@@ -31,14 +32,15 @@ namespace Bazy_Danych
             InitializeComponent();
             wizyta = _wizyta;
             WczytajDane();
+            thisForm = this;
         }
 
         private void WczytajDane()
         {
-            referralNamePatient.Content = wizyta.pacjent.Imie;
-            referralSurnamePatient.Content = wizyta.pacjent.Nazwisko;
-            referralNameDoctor.Content = wizyta.lekarz.Imie;
-            referralSurnameDoctor.Content = wizyta.lekarz.Nazwisko;
+            referralNamePatient.Text = wizyta.pacjent.Imie.ToString();
+            referralSurnamePatient.Text = wizyta.pacjent.Nazwisko.ToString();
+            referralNameDoctor.Text = wizyta.lekarz.Imie.ToString();
+            referralSurnameDoctor.Text = wizyta.lekarz.Nazwisko.ToString();
 
         }
         private void AddRefferBtn_Click(object sender, RoutedEventArgs e)

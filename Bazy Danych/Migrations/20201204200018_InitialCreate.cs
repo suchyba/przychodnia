@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bazy_Danych.Migrations
 {
-    public partial class initialcreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -249,21 +249,23 @@ namespace Bazy_Danych.Migrations
                 name: "LekRecepta",
                 columns: table => new
                 {
-                    lekiID = table.Column<int>(type: "int", nullable: false),
-                    receptyID = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Recepta = table.Column<int>(type: "int", nullable: false),
+                    Lek = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LekRecepta", x => new { x.lekiID, x.receptyID });
+                    table.PrimaryKey("PK_LekRecepta", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_LekRecepta_Leki_lekiID",
-                        column: x => x.lekiID,
+                        name: "FK_LekRecepta_Leki_Lek",
+                        column: x => x.Lek,
                         principalTable: "Leki",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LekRecepta_Recepty_receptyID",
-                        column: x => x.receptyID,
+                        name: "FK_LekRecepta_Recepty_Recepta",
+                        column: x => x.Recepta,
                         principalTable: "Recepty",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -275,9 +277,14 @@ namespace Bazy_Danych.Migrations
                 column: "adresID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LekRecepta_receptyID",
+                name: "IX_LekRecepta_Lek",
                 table: "LekRecepta",
-                column: "receptyID");
+                column: "Lek");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LekRecepta_Recepta",
+                table: "LekRecepta",
+                column: "Recepta");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pacjeci_adresID",

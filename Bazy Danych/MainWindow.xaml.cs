@@ -205,5 +205,10 @@ namespace Bazy_Danych
             dataBaseContext.Add(pacjent3);
             dataBaseContext.SaveChanges();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

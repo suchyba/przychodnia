@@ -24,6 +24,7 @@ namespace Bazy_Danych
         public long PESELDoktora { get; set; }
 
         public DetailsDoctorForm DetailsDoctorForm { get; set; }
+        public DoctorForm thisForm { get; set; }
         public DoctorForm()
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace Bazy_Danych
             InitializeComponent();
             PESELDoktora = pesel;
             wczytajWizyty();
+            thisForm = this;
         }
         private void wczytajWizyty()
         {
@@ -47,17 +49,20 @@ namespace Bazy_Danych
         private void wizytyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Wizyta wybrany = (Wizyta)wizytyListBox.SelectedItem;
-            peselSzczegolyLabel.Content = wybrany.pacjent.PESEL;
-            imieSzczegolyLabel.Content = wybrany.pacjent.Imie;
-            nazwiskoSzczegolyLabel.Content = wybrany.pacjent.Nazwisko;
-            DataSzczegolyLabel.Content = wybrany.Data;
+            peselSzczegolyLabel.Text = wybrany.pacjent.PESEL.ToString();
+            imieSzczegolyLabel.Text = wybrany.pacjent.Imie.ToString();
+            nazwiskoSzczegolyLabel.Text = wybrany.pacjent.Nazwisko.ToString();
+            DataSzczegolyLabel.Text = wybrany.Data.ToString();
         }
 
         private void PrzyjmujBtn_Click(object sender, RoutedEventArgs e)
         {
             Wizyta wybrany = (Wizyta)wizytyListBox.SelectedItem;
+            if(wybrany == null) { return; }
             DetailsDoctorForm = new DetailsDoctorForm(wybrany,wybrany.pacjent);
+            thisForm.Visibility = Visibility.Collapsed;
             DetailsDoctorForm.ShowDialog();
+            thisForm.Visibility = Visibility.Visible;
         }
     }
 }

@@ -72,6 +72,28 @@ namespace Bazy_Danych.Migrations
                     b.ToTable("Leki");
                 });
 
+            modelBuilder.Entity("Bazy_Danych.Model.LekRecepta", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("Lek")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Recepta")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Lek");
+
+                    b.HasIndex("Recepta");
+
+                    b.ToTable("LekRecepta");
+                });
+
             modelBuilder.Entity("Bazy_Danych.Model.Lekarz", b =>
                 {
                     b.Property<long>("PESEL")
@@ -288,19 +310,23 @@ namespace Bazy_Danych.Migrations
                     b.ToTable("Zabiegi");
                 });
 
-            modelBuilder.Entity("LekRecepta", b =>
+            modelBuilder.Entity("Bazy_Danych.Model.LekRecepta", b =>
                 {
-                    b.Property<int>("lekiID")
-                        .HasColumnType("int");
+                    b.HasOne("Bazy_Danych.Model.Lek", "lek")
+                        .WithMany("recepty")
+                        .HasForeignKey("Lek")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("receptyID")
-                        .HasColumnType("int");
+                    b.HasOne("Bazy_Danych.Model.Recepta", "recepta")
+                        .WithMany("leki")
+                        .HasForeignKey("Recepta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("lekiID", "receptyID");
+                    b.Navigation("lek");
 
-                    b.HasIndex("receptyID");
-
-                    b.ToTable("LekRecepta");
+                    b.Navigation("recepta");
                 });
 
             modelBuilder.Entity("Bazy_Danych.Model.Lekarz", b =>
@@ -426,19 +452,9 @@ namespace Bazy_Danych.Migrations
                     b.Navigation("rodzajZabiegu");
                 });
 
-            modelBuilder.Entity("LekRecepta", b =>
+            modelBuilder.Entity("Bazy_Danych.Model.Lek", b =>
                 {
-                    b.HasOne("Bazy_Danych.Model.Lek", null)
-                        .WithMany()
-                        .HasForeignKey("lekiID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Bazy_Danych.Model.Recepta", null)
-                        .WithMany()
-                        .HasForeignKey("receptyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("recepty");
                 });
 
             modelBuilder.Entity("Bazy_Danych.Model.Lekarz", b =>
@@ -466,6 +482,11 @@ namespace Bazy_Danych.Migrations
             modelBuilder.Entity("Bazy_Danych.Model.Pielegniarka", b =>
                 {
                     b.Navigation("zabiegi");
+                });
+
+            modelBuilder.Entity("Bazy_Danych.Model.Recepta", b =>
+                {
+                    b.Navigation("leki");
                 });
 #pragma warning restore 612, 618
         }
