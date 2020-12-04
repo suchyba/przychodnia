@@ -27,6 +27,7 @@ namespace Bazy_Danych
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         private void ZalogujBtn_Click(object sender, RoutedEventArgs e)
@@ -77,7 +78,7 @@ namespace Bazy_Danych
                 {
                     
                     this.Visibility = Visibility.Collapsed;
-                    nurseForm = new NurseForm(pielegniarka);
+                    nurseForm = new NurseForm(user2);
                     nurseForm.ShowDialog();
                     this.Visibility = Visibility.Visible;
                         userLogin.Text = "";
@@ -204,6 +205,11 @@ namespace Bazy_Danych
             dataBaseContext.Add(pacjent2);
             dataBaseContext.Add(pacjent3);
             dataBaseContext.SaveChanges();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
