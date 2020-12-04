@@ -7,12 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
-        <Label Name="Wynik"></Label>
-        <Label HorizontalAlignment="Center">Login: </Label>
-        <TextBox Name="userLogin"></TextBox>
-        <Label HorizontalAlignment="Center">Hasło:</Label>
-        <PasswordBox Name="userPassword"></PasswordBox>
-        <Button Click="ZalogujBtn_Click">Zaloguj</Button>
-        <Button Click="Button_Click">Uzupełnij baze danych</Button>
+        
+        <Label Margin="0, 5">Login: </Label>
+        <TextBox Name="userLogin" Padding="5"></TextBox>
+        
+        <Label Margin="0, 5">Hasło:</Label>
+        <PasswordBox Name="userPassword" Padding="5"></PasswordBox>
+
+        <Button Click="ZalogujBtn_Click" Margin="0, 10" Padding="5">Zaloguj</Button>
+
+        <Label Name="Wynik" Visibility="Collapsed" Foreground="Red"></Label>
     </StackPanel>
 </Window>
