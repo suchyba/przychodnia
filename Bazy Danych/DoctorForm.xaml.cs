@@ -38,26 +38,40 @@ namespace Bazy_Danych
         {
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
-            var wizyty = dataBaseContext.Wizyty.Include("pacjent").Where(p => p.lekarz.PESEL == PESELDoktora);
+            dataBaseContext.Wizyty.Include("pacjent").Where(p => p.lekarz.PESEL == PESELDoktora && p.Opis == null).Load();
 
-            wizytyListBox.ItemsSource = wizyty.ToList();
+            var wizyty = dataBaseContext.Wizyty.Local.ToObservableCollection();
+
+            wizytyListBox.ItemsSource = wizyty;
             wizytyListBox.UpdateLayout();
         }
 
         private void wizytyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Wizyta wybrany = (Wizyta)wizytyListBox.SelectedItem;
-            peselSzczegolyLabel.Content = wybrany.pacjent.PESEL;
-            imieSzczegolyLabel.Content = wybrany.pacjent.Imie;
-            nazwiskoSzczegolyLabel.Content = wybrany.pacjent.Nazwisko;
-            DataSzczegolyLabel.Content = wybrany.Data;
+            if (wybrany != null)
+            {
+                peselSzczegolyLabel.Content = wybrany.pacjent.PESEL;
+                imieSzczegolyLabel.Content = wybrany.pacjent.Imie;
+                nazwiskoSzczegolyLabel.Content = wybrany.pacjent.Nazwisko;
+                DataSzczegolyLabel.Content = wybrany.Data;
+            }
+            else
+            {
+                peselSzczegolyLabel.Content = "";
+                imieSzczegolyLabel.Content = "";
+                nazwiskoSzczegolyLabel.Content = "";
+                DataSzczegolyLabel.Content = "";
+            }
         }
 
         private void PrzyjmujBtn_Click(object sender, RoutedEventArgs e)
         {
             Wizyta wybrany = (Wizyta)wizytyListBox.SelectedItem;
-            DetailsDoctorForm = new DetailsDoctorForm(wybrany,wybrany.pacjent);
+            DetailsDoctorForm = new DetailsDoctorForm(wybrany, wybrany.pacjent);
             DetailsDoctorForm.ShowDialog();
+            wczytajWizyty();
+            wizytyListBox.UpdateLayout();
         }
     }
 }

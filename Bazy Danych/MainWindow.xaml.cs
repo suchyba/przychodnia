@@ -77,7 +77,7 @@ namespace Bazy_Danych
                 {
                     
                     this.Visibility = Visibility.Collapsed;
-                    nurseForm = new NurseForm(pielegniarka);
+                    nurseForm = new NurseForm(user2);
                     nurseForm.ShowDialog();
                     this.Visibility = Visibility.Visible;
                         userLogin.Text = "";

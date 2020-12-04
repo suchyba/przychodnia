@@ -25,31 +25,31 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.ColumnSpan="2">Dane pacjęta</Label>
+                <Label Grid.ColumnSpan="2" Margin="5">Dane pacjęta</Label>
 
-                <Label Grid.Row="1">PESEL:</Label>
-                <Label Name="peselSzczegolyLabel" Grid.Row="1" Grid.Column="1"></Label>
+                <Label Grid.Row="1" Margin="5">PESEL:</Label>
+                <Label Name="peselSzczegolyLabel" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
-                <Label Grid.Row="2">Imie:</Label>
-                <Label Name="imieSzczegolyLabel" Grid.Row="2" Grid.Column="1"></Label>
+                <Label Grid.Row="2" Margin="5">Imię:</Label>
+                <Label Name="imieSzczegolyLabel" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
-                <Label Grid.Row="3">Nazwisko:</Label>
-                <Label Name="nazwiskoSzczegolyLabel" Grid.Row="3" Grid.Column="1"></Label>
+                <Label Grid.Row="3" Margin="5">Nazwisko:</Label>
+                <Label Name="nazwiskoSzczegolyLabel" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
-                <Label Grid.Row="4">Data i godzina wizyty:</Label>
-                <Label Name="DataSzczegolyLabel" Grid.Row="4" Grid.Column="1"></Label>
+                <Label Grid.Row="4" Margin="5">Data i godzina wizyty:</Label>
+                <Label Name="DataSzczegolyLabel" Grid.Row="4" Grid.Column="1" Margin="5"/>
             </Grid>
-            <Button>Wypisz skierowanie</Button>
-            <Button>Wypisz receptę</Button>
-            <Button Click="ZakonczWizyteBtn_Click">Zakończ wizytę</Button>
+            <Button Margin="5" Padding="20, 5">Wypisz skierowanie</Button>
+            <Button Margin="5" Padding="20, 5">Wypisz receptę</Button>
+            <Button Click="ZakonczWizyteBtn_Click" Margin="5" Padding="20, 5">Zakończ wizytę</Button>
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Label>Opis wizyty:</Label>
-            <TextBox Name="opisWizytyTextBox" Grid.Row="1"></TextBox>
+            <Label Margin="5">Opis wizyty:</Label>
+            <TextBox Name="opisWizytyTextBox" Grid.Row="1" Margin="5" Padding="5"/>
          </Grid>
     </Grid>
 </Window>
