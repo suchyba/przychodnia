@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bazy_Danych" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="DodajWizyteForm" Height="450" Width="800">
+        Title="Dodaj wizytę" Height="250" Width="400">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
+        <Label Margin="5">Pacjent:</Label>
+        <TextBox Name="PacjentTextBox" Grid.Column="1" Margin="5" Padding="5" IsReadOnly="True"/>
+
+        <Label Grid.Row="1" Margin="5">Lekarz:</Label>
+        <ComboBox Name="LekarzComboBox" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" BorderThickness="1"/>
+
+        <Label Grid.Row="2" Margin="5">Data:</Label>
+        <xctk:DateTimePicker Name="DataDatePicker" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5"/>
+
+        <Button Name="DodajButton" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" Margin="10" Padding="20, 5" Click="WizytaBtn_Click">Umów na wizytę</Button>
+        <Button Name="AnulujButton" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" IsCancel="True" Margin="10" Padding="20, 5">Anuluj</Button>
     </Grid>
 </Window>

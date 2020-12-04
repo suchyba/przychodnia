@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bazy_Danych.Data;
+using Bazy_Danych.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,8 +23,17 @@ namespace Bazy_Danych
         {
             InitializeComponent();
         }
-        /*private void AddPatientBtn_Click(object sender, RoutedEventArgs e)
+        private void AddPatientBtn_Click(object sender, RoutedEventArgs e)
         {
+            NumerMieszkaniaTextBox.ClearValue(TextBox.BorderBrushProperty);
+            NumerDomuTextBox.ClearValue(TextBox.BorderBrushProperty);
+            ImieTextBox.ClearValue(TextBox.BorderBrushProperty);
+            NazwiskoTextBox.ClearValue(TextBox.BorderBrushProperty);
+            UlicaTextBox.ClearValue(TextBox.BorderBrushProperty);
+            MiastoTextBox.ClearValue(TextBox.BorderBrushProperty);
+            KodTextBox.ClearValue(TextBox.BorderBrushProperty);
+            PESELTextBox.ClearValue(TextBox.BorderBrushProperty);
+
             long PESELPacjeta;
             string imie;
             string nazwisko;
@@ -32,30 +43,63 @@ namespace Bazy_Danych
             int nrDomu;
             int numerMieszkania = -1;
 
-            if (!long.TryParse(PESELAddPatientBox.Text, out PESELPacjeta))
+            bool blad = false;
+            if (!long.TryParse(PESELTextBox.Text, out PESELPacjeta))
             {
-                wizytaLabel.Content = "PESEL pacjeta jest nie prawidłowy";
-                return;
+                PESELTextBox.BorderBrush = Brushes.Red;
+                blad = true;
             }
-            imie = NameAddPatientBox.Text;
-            nazwisko = SurnameAddPatientBox.Text;
-            miasto = CityAddPetientBox.Text;
-            ulica = SurnameAddPatientBox.Text;
-            kodPocztowy = NumberAddPetientBox.Text;
-            if (!int.TryParse(HouseNumberAddPetientBox.Text, out nrDomu))
+            imie = ImieTextBox.Text;
+            nazwisko = NazwiskoTextBox.Text;
+            miasto = MiastoTextBox.Text;
+            ulica = UlicaTextBox.Text;
+            kodPocztowy = KodTextBox.Text;
+
+            if (!int.TryParse(NumerDomuTextBox.Text, out nrDomu))
             {
-                wizytaLabel.Content = "Nie poprawny nr domu";
-                return;
+                NumerDomuTextBox.BorderBrush = Brushes.Red;
+                blad = true;
             }
-            if (!String.IsNullOrEmpty(FlatNumberAddPetientBox.Text))
+            if (!String.IsNullOrEmpty(NumerMieszkaniaTextBox.Text))
             {
-                if (!int.TryParse(FlatNumberAddPetientBox.Text, out numerMieszkania))
+                if (!int.TryParse(NumerMieszkaniaTextBox.Text, out numerMieszkania))
                 {
-                    wizytaLabel.Content = "Nie poprawny nr mieszkania";
-                    return;
+                    NumerMieszkaniaTextBox.BorderBrush = Brushes.Red;
+                    blad = true;
                 }
             }
-
+            if(String.IsNullOrEmpty(ImieTextBox.Text))
+            {
+                ImieTextBox.BorderBrush = Brushes.Red;
+                blad = true;
+            }
+            if (String.IsNullOrEmpty(NazwiskoTextBox.Text))
+            {
+                NazwiskoTextBox.BorderBrush = Brushes.Red;
+                blad = true;
+            }
+            if (String.IsNullOrEmpty(MiastoTextBox.Text))
+            {
+                MiastoTextBox.BorderBrush = Brushes.Red;
+                blad = true;
+            }
+            if (String.IsNullOrEmpty(KodTextBox.Text) || !KodTextBox.Text.Contains("-"))
+            {
+                KodTextBox.BorderBrush = Brushes.Red;
+                blad = true;
+            }
+            if (String.IsNullOrEmpty(NumerDomuTextBox.Text))
+            {
+                NumerDomuTextBox.BorderBrush = Brushes.Red;
+                blad = true;
+            }
+            if (String.IsNullOrEmpty(UlicaTextBox.Text))
+            {
+                UlicaTextBox.BorderBrush = Brushes.Red;
+                blad = true;
+            }
+            if (blad)
+                return;
 
 
             using DataBaseContext dataBaseContext = new DataBaseContext();
@@ -89,9 +133,12 @@ namespace Bazy_Danych
                 Nazwisko = nazwisko,
                 adres = adres1
             };
-            wizytaLabel.Content = "Dodano pacjeta";
             dataBaseContext.Add(pacjent);
             dataBaseContext.SaveChanges();
-        }*/
+
+            MessageBox.Show("Dodano pacjenta", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+            (this.Owner as NurseForm).pacjent = pacjent;
+            Close();
+        }
     }
 }
