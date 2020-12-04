@@ -52,5 +52,12 @@ namespace Bazy_Danych
             dataBaseContext.SaveChanges();
             Close();
         }
+
+        private void WypiszSkierowanieBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EeferralForm skierowanie = new EeferralForm(wizyta1);
+            skierowanie.ShowDialog();
+
+        }
     }
 }

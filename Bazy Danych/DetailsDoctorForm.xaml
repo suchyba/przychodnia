@@ -39,7 +39,7 @@
                 <Label Grid.Row="4">Data i godzina wizyty:</Label>
                 <Label Name="DataSzczegolyLabel" Grid.Row="4" Grid.Column="1"></Label>
             </Grid>
-            <Button>Wypisz skierowanie</Button>
+            <Button Click="WypiszSkierowanieBtn_Click">Wypisz skierowanie</Button>
             <Button>Wypisz receptę</Button>
             <Button Click="ZakonczWizyteBtn_Click">Zakończ wizytę</Button>
         </StackPanel>

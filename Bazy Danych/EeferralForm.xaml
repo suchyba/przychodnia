@@ -1,0 +1,63 @@
+﻿<Window x:Class="Bazy_Danych.EeferralForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bazy_Danych" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="EeferralForm" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label>Dane pajeta: </Label>
+        <Label Grid.Row="1">Imie: </Label>
+        <Label Name="referralNamePatient" Grid.Row="1" Grid.Column="1"></Label>
+        <Label Grid.Row="1" Grid.Column="2">Nazwisko:</Label>
+        <Label Name="referralSurnamePatient" Grid.Row="1" Grid.Column="3"></Label>
+
+        <Label Grid.Row="2">Dane wypisujacego lekarza:</Label>
+        <Label Grid.Row="3">Imie:</Label>
+        <Label Name="referralNameDoctor" Grid.Row="3" Grid.Column="1"></Label>
+        <Label Grid.Row="3" Grid.Column="2">Nazwisko:</Label>
+        <Label Name="referralSurnameDoctor" Grid.Row="3" Grid.Column="3"></Label>
+
+        <Label Grid.Row="4">Nazwa zabiegu:</Label>
+        <TextBox Name="RefferNameOperation" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4"></TextBox>
+        <Label Grid.Row="5">Data wygaśniecia skierowania:</Label>
+        <xctk:DateTimePicker Name="RefferDate" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4"></xctk:DateTimePicker>
+        <Label Grid.Row="6">Adres przychodni:</Label>
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="4">
+            <Label>Miasto</Label>
+            <TextBox Name="CityAddPetientBox"></TextBox>
+            <Label>Ulica</Label>
+            <TextBox Name="StreetAddPetientBox"></TextBox>
+            <Label>Kod pocztowy</Label>
+            <TextBox Name="NumberAddPetientBox"></TextBox>
+            <Label>Numer domu</Label>
+            <TextBox Name="HouseNumberAddPetientBox"></TextBox>
+            <Label>Numer mieszkania</Label>
+            <TextBox Name="FlatNumberAddPetientBox"></TextBox>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="8" Grid.ColumnSpan="4">
+            <Button Click="AddRefferBtn_Click" Width="200" >Zatwierdz</Button>
+            <Button Click="AbordRefferBtn_Click" Grid.Row="7" Width="200">Anuluj</Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

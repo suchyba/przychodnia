@@ -38,7 +38,7 @@ namespace Bazy_Danych
         {
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
-            var wizyty = dataBaseContext.Wizyty.Include("pacjent").Where(p => p.lekarz.PESEL == PESELDoktora);
+            var wizyty = dataBaseContext.Wizyty.Include("pacjent").Include("lekarz").Where(p => p.lekarz.PESEL == PESELDoktora);
 
             wizytyListBox.ItemsSource = wizyty.ToList();
             wizytyListBox.UpdateLayout();
