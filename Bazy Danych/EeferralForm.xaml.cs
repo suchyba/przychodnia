@@ -30,6 +30,7 @@ namespace Bazy_Danych
         public EeferralForm(Wizyta _wizyta)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             wizyta = _wizyta;
             WczytajDane();
             thisForm = this;

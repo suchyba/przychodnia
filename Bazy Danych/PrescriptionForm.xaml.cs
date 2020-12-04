@@ -38,6 +38,7 @@ namespace Bazy_Danych
         public PrescriptionForm(Wizyta _wizyta)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             wizyta = _wizyta;
             WczytajDane();
             thisForm = this;
@@ -45,11 +46,11 @@ namespace Bazy_Danych
 
         private void WczytajDane()
         {
-            referralNamePatient.Content = wizyta.pacjent.Imie;
-            referralSurnamePatient.Content = wizyta.pacjent.Nazwisko;
+            referralNamePatient.Text = wizyta.pacjent.Imie.ToString();
+            referralSurnamePatient.Text = wizyta.pacjent.Nazwisko.ToString();
 
-            referralNameDoctor.Content = wizyta.lekarz.Imie;
-            referralSurnameDoctor.Content = wizyta.lekarz.Nazwisko;
+            referralNameDoctor.Text = wizyta.lekarz.Imie.ToString();
+            referralSurnameDoctor.Text = wizyta.lekarz.Nazwisko.ToString();
         }
         private void DeleteLekBt_Click(object sender, RoutedEventArgs e)
         {
@@ -63,6 +64,11 @@ namespace Bazy_Danych
 
         private void WypiszeRecepteBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(listaLekow2.Count() == 0)
+            {
+                MessageBoxResult result1 = MessageBox.Show("Nie wybrano żadnych leków");
+                return;
+            }
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
             Pacjent pacjentDb = dataBaseContext.Pacjeci.Where(p => p.PESEL == wizyta.pacjent.PESEL).FirstOrDefault();
@@ -74,7 +80,6 @@ namespace Bazy_Danych
             {
                 pacjent = pacjentDb,
                 lekarz = lekarzDb,
-                //leki = listaLekow2
             };
 
             
@@ -104,14 +109,15 @@ namespace Bazy_Danych
 
             var leki = dataBaseContext.Leki.Where(p => p.Nazwa_leku == nazwaLeku.Text);
 
-            if (leki == null)
-            {
-                return;
-            }
+
             listaLekow1 = leki.ToList();
 
             wyszukaneLeki.ItemsSource = listaLekow1;
             wyszukaneLeki.UpdateLayout();
+            if (leki.Count() == 0)
+            {
+                MessageBoxResult result = MessageBox.Show("Nie znaleziono leku o podanej nazwie");
+            }
         }
 
         private void DodajBtn_Click_1(object sender, RoutedEventArgs e)

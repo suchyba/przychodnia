@@ -23,15 +23,15 @@
         </Grid.RowDefinitions>
         <Label Margin="2" Padding="2">Dane pajeta:</Label>
         <Label Grid.Row="1" Margin="2" Padding="2">Imie:</Label>
-        <Label Name="referralNamePatient" Grid.Row="1" Grid.Column="1" Margin="2" Padding="2"></Label>
+        <TextBox IsReadOnly="True" Name="referralNamePatient" Grid.Row="1" Grid.Column="1" Margin="2" Padding="2"></TextBox>
         <Label Grid.Row="1" Grid.Column="2" Margin="2" Padding="2">Nazwisko:</Label>
-        <Label Name="referralSurnamePatient" Grid.Row="1" Grid.Column="3" Margin="2" Padding="2"></Label>
+        <TextBox IsReadOnly="True" Name="referralSurnamePatient" Grid.Row="1" Grid.Column="3" Margin="2" Padding="2"></TextBox>
 
         <Label Grid.Row="2" Margin="2" Padding="2">Dane wypisujacego lekarza:</Label>
         <Label Grid.Row="3" Margin="2" Padding="2">Imie:</Label>
-        <Label Name="referralNameDoctor" Grid.Row="3" Grid.Column="1" Margin="2" Padding="2"></Label>
+        <TextBox IsReadOnly="True" Name="referralNameDoctor" Grid.Row="3" Grid.Column="1" Margin="2" Padding="2"></TextBox>
         <Label Grid.Row="3" Grid.Column="2" Margin="2" Padding="2">Nazwisko:</Label>
-        <Label Name="referralSurnameDoctor" Grid.Row="3" Grid.Column="3" Margin="2" Padding="2"></Label>
+        <TextBox IsReadOnly="True" Name="referralSurnameDoctor" Grid.Row="3" Grid.Column="3" Margin="2" Padding="2"></TextBox>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>

@@ -32,6 +32,7 @@ namespace Bazy_Danych
         public DoctorForm(long pesel)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             PESELDoktora = pesel;
             wczytajWizyty();
             thisForm = this;

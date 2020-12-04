@@ -19,7 +19,7 @@ namespace Bazy_Danych.Model
 
         public override string ToString()
         {
-            return "Imie: " + pacjent.Imie + " Nazwisko: " + pacjent.Nazwisko + "\n Data: " + Data.ToString();
+            return "Imie: " + pacjent.Imie + " Nazwisko: " + pacjent.Nazwisko + " Data: " + Data.ToString();
         }
     }
 }

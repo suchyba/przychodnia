@@ -27,6 +27,7 @@ namespace Bazy_Danych
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
         private void ZalogujBtn_Click(object sender, RoutedEventArgs e)

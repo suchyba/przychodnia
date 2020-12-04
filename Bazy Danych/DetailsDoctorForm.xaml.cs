@@ -31,6 +31,7 @@ namespace Bazy_Danych
         public DetailsDoctorForm(Wizyta wizyta,Pacjent p1)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             pacjent = p1;
             wizyta1 = wizyta;
             wczytajDane();
