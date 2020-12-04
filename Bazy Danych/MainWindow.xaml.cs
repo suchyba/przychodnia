@@ -31,11 +31,15 @@ namespace Bazy_Danych
 
         private void ZalogujBtn_Click(object sender, RoutedEventArgs e)
         {
+            Wynik.Visibility = Visibility.Collapsed;
+            userLogin.ClearValue(TextBox.BorderBrushProperty);
+            userPassword.ClearValue(TextBox.BorderBrushProperty);
+
             int login;
 
             if (!Int32.TryParse(userLogin.Text, out login))
             {
-                Wynik.Content = "Logowanie nie poprawne";
+                userLogin.BorderBrush = Brushes.Red;
 
                 return;
             }
@@ -45,18 +49,22 @@ namespace Bazy_Danych
 
             Lekarz user = dataBaseContext.Lekarze.Where(p => p.PESEL == login).FirstOrDefault();
 
+
             if (user != null)
             {
 
                 if (user.Password == password)
                 {
-                    Wynik.Content = "Logowanie poprawne Lekarz";
+                    this.Visibility = Visibility.Collapsed;
                     doctorForm = new DoctorForm(user.PESEL);
                     doctorForm.ShowDialog();
+                    this.Visibility = Visibility.Visible;
+                    userLogin.Text = "";
+                    userPassword.Password = "";
                     return;
                 }
 
-                Wynik.Content = "Logowanie nie poprawne";
+                userPassword.BorderBrush = Brushes.Red;
                 return;
             }
 
@@ -67,14 +75,22 @@ namespace Bazy_Danych
 
                 if (user2.Password == password)
                 {
-                    Wynik.Content = "Logowanie poprawne Pielegniarka";
-                    nurseForm = new NurseForm();
+                    
+                    this.Visibility = Visibility.Collapsed;
+                    nurseForm = new NurseForm(pielegniarka);
                     nurseForm.ShowDialog();
+                    this.Visibility = Visibility.Visible;
+                        userLogin.Text = "";
+                        userPassword.Password = "";
                     return;
                 }
+                userPassword.BorderBrush = Brushes.Red;
+                return;
+
 
             }
-            Wynik.Content = "Logowanie nie poprawne";
+            Wynik.Content = "Podany użytkownik nie istnieje!";
+            Wynik.Visibility = Visibility.Visible;
             return;
 
         }
