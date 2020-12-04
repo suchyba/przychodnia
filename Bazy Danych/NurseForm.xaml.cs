@@ -21,7 +21,7 @@ namespace Bazy_Danych
     /// </summary>
     public partial class NurseForm : Window
     {
-        Pacjent pacjent = null;
+        public Pacjent pacjent { get; set; }
         public Pielegniarka ObecnaPielegniarka { get; set; }
 
         public NurseForm(Pielegniarka pielegniarka)
@@ -29,6 +29,7 @@ namespace Bazy_Danych
             InitializeComponent();
             ObecnaPielegniarka = pielegniarka;
             ZabiegiListBox.ItemsSource = pielegniarka.zabiegi;
+            PielengniarkaLabel.Content = pielegniarka.Imie + " " + pielegniarka.Nazwisko;
         }
 
         private void searchBtn_Click(object sender, RoutedEventArgs e)
@@ -63,6 +64,26 @@ namespace Bazy_Danych
                 SearchPacjentGroupBox.IsEnabled = false;
                 ErrorLabel.Content = "Nie ma takiego pacjenta!";
                 ErrorLabel.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void DodajWizyteButton_Click(object sender, RoutedEventArgs e)
+        {
+            DodajWizyteForm w = new DodajWizyteForm(pacjent);
+            w.ShowDialog();
+        }
+
+        private void AddPacjentButton_Click(object sender, RoutedEventArgs e)
+        {
+            DodajPacjentaForm w = new DodajPacjentaForm();
+            w.Owner = this;
+            w.ShowDialog();
+            if (pacjent != null)
+            {
+                ImieTextBox.Text = pacjent.Imie;
+                NazwiskoTextBox.Text = pacjent.Nazwisko;
+                MiastoTextBox.Text = pacjent.adres.Miasto;
+                SearchPacjentGroupBox.IsEnabled = true;
             }
         }
     }
