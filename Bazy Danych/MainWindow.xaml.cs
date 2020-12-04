@@ -47,48 +47,46 @@ namespace Bazy_Danych
 
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
-            var user = dataBaseContext.Lekarze.Where(p => p.PESEL == login);
+            Lekarz user = dataBaseContext.Lekarze.Where(p => p.PESEL == login).FirstOrDefault();
 
-            if (user.Count() != 0)
+
+            if (user != null)
             {
-                foreach (Lekarz lekarz in user)
-                {
-                    if (lekarz.Password == password)
-                    {
-                        this.Visibility = Visibility.Collapsed;
-                        doctorForm = new DoctorForm();
-                        doctorForm.ShowDialog();
-                        this.Visibility = Visibility.Visible;
-                        userLogin.Text = "";
-                        userPassword.Password = "";
-                        return;
-                    }
 
+                if (user.Password == password)
+                {
+                    this.Visibility = Visibility.Collapsed;
+                    doctorForm = new DoctorForm(user.PESEL);
+                    doctorForm.ShowDialog();
+                    this.Visibility = Visibility.Visible;
+                    userLogin.Text = "";
+                    userPassword.Password = "";
+                    return;
                 }
+
                 userPassword.BorderBrush = Brushes.Red;
                 return;
             }
 
-            var user2 = dataBaseContext.Pielegniarki.Where(p => p.PESEL == login);
+            Pielegniarka user2 = dataBaseContext.Pielegniarki.Where(p => p.PESEL == login).FirstOrDefault();
 
-            if (user2.Count() != 0)
+            if (user2 != null)
             {
-                foreach (Pielegniarka pielegniarka in user2)
+
+                if (user2.Password == password)
                 {
-                    if (pielegniarka.Password == password)
-                    {
-                        this.Visibility = Visibility.Collapsed;
-                        nurseForm = new NurseForm(pielegniarka);
-                        nurseForm.ShowDialog();
-                        this.Visibility = Visibility.Visible;
+                    
+                    this.Visibility = Visibility.Collapsed;
+                    nurseForm = new NurseForm(pielegniarka);
+                    nurseForm.ShowDialog();
+                    this.Visibility = Visibility.Visible;
                         userLogin.Text = "";
                         userPassword.Password = "";
-                        return;
-                    }
-
+                    return;
                 }
                 userPassword.BorderBrush = Brushes.Red;
                 return;
+
 
             }
             Wynik.Content = "Podany użytkownik nie istnieje!";

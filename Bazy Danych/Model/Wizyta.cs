@@ -16,5 +16,10 @@ namespace Bazy_Danych.Model
         public Lekarz lekarz { get; set; }
         [Required]
         public Pacjent pacjent { get; set; }
+
+        public override string ToString()
+        {
+            return "Imie: " + pacjent.Imie + " Nazwisko: " + pacjent.Nazwisko + "\n Data: " + Data.ToString();
+        }
     }
 }
