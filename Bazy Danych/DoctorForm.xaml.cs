@@ -22,6 +22,8 @@ namespace Bazy_Danych
     public partial class DoctorForm : Window
     {
         public long PESELDoktora { get; set; }
+
+        public DetailsDoctorForm DetailsDoctorForm { get; set; }
         public DoctorForm()
         {
             InitializeComponent();
@@ -53,7 +55,9 @@ namespace Bazy_Danych
 
         private void PrzyjmujBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Wizyta wybrany = (Wizyta)wizytyListBox.SelectedItem;
+            DetailsDoctorForm = new DetailsDoctorForm(wybrany,wybrany.pacjent);
+            DetailsDoctorForm.ShowDialog();
         }
     }
 }

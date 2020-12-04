@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Bazy_Danych.Model
 {
-    class Skierowanie
+    public class Skierowanie
     {
         [Key]
         public int ID { get; set; }
