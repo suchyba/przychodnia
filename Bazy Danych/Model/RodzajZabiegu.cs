@@ -12,5 +12,9 @@ namespace Bazy_Danych.Model
         public int ID { get; set; }
         [Required]
         public string Nazwa { get; set; }
+        public override string ToString()
+        {
+            return Nazwa;
+        }
     }
 }

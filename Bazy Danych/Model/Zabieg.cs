@@ -20,5 +20,9 @@ namespace Bazy_Danych.Model
         public Pacjent pacjent { get; set; }
         [Required]
         public RodzajZabiegu rodzajZabiegu { get; set; }
+        public override string ToString()
+        {
+            return pacjent + " " + Data + "\n" + rodzajZabiegu;
+        }
     }
 }
