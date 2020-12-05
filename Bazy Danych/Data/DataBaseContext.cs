@@ -18,6 +18,7 @@ namespace Bazy_Danych.Data
         public DbSet<Skierowanie> Skierowania { get; set; }
         public DbSet<Wizyta> Wizyty { get; set; }
         public DbSet<Zabieg> Zabiegi { get; set; }
+        public DbSet<LekRecepta> LekRecepta { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
