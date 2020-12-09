@@ -30,7 +30,7 @@ namespace Bazy_Danych
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
         }
-        public DetailsDoctorForm(Wizyta wizyta,Pacjent p1)
+        public DetailsDoctorForm(Wizyta wizyta, Pacjent p1)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -44,7 +44,7 @@ namespace Bazy_Danych
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
             Wizyta wizytaDb = dataBaseContext.Wizyty.Where(p => p.ID == wizyta1.ID).FirstOrDefault();
-            if(wizytaDb == null) { return; }
+            if (wizytaDb == null) { return; }
             peselSzczegolyLabel.Text = pacjent.PESEL.ToString();
             imieSzczegolyLabel.Text = pacjent.Imie;
             nazwiskoSzczegolyLabel.Text = pacjent.Nazwisko;
@@ -66,18 +66,25 @@ namespace Bazy_Danych
         {
             EeferralForm skierowanie = new EeferralForm(wizyta1);
             Close();
+            //thisForm.Visibility = Visibility.Collapsed;
             skierowanie.ShowDialog();
-            DetailsDoctorForm w = new DetailsDoctorForm(wizyta1,pacjent);
+            DetailsDoctorForm w = new DetailsDoctorForm(wizyta1, pacjent);
             w.ShowDialog();
+            //thisForm.Visibility = Visibility.Visible;
+
+
         }
 
         private void WypiszRecepteBtn_Click(object sender, RoutedEventArgs e)
         {
             PrescriptionForm recepta = new PrescriptionForm(wizyta1);
             Close();
+            //this.Visibility = Visibility.Collapsed;
+
             recepta.ShowDialog();
             DetailsDoctorForm w = new DetailsDoctorForm(wizyta1, pacjent);
             w.ShowDialog();
+            //this.Visibility = Visibility.Visible;
 
         }
     }

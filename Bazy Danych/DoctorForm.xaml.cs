@@ -24,6 +24,7 @@ namespace Bazy_Danych
         public long PESELDoktora { get; set; }
 
         public DetailsDoctorForm DetailsDoctorForm { get; set; }
+        public DoctorForm thisForm { get; set; }
         public DoctorForm()
         {
             InitializeComponent();
@@ -33,45 +34,35 @@ namespace Bazy_Danych
         public DoctorForm(long pesel)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             PESELDoktora = pesel;
             wczytajWizyty();
+            thisForm = this;
         }
         private void wczytajWizyty()
         {
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
-            dataBaseContext.Wizyty.Include("pacjent").Where(p => p.lekarz.PESEL == PESELDoktora && p.Opis == null).Load();
+            var wizyty = dataBaseContext.Wizyty.Include("pacjent").Include("lekarz").Where(p => p.lekarz.PESEL == PESELDoktora && String.IsNullOrEmpty(p.Opis));
 
-            var wizyty = dataBaseContext.Wizyty.Local.ToObservableCollection();
-
-            wizytyListBox.ItemsSource = wizyty;
+            wizytyListBox.ItemsSource = wizyty.ToList();
             wizytyListBox.UpdateLayout();
         }
 
         private void wizytyListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Wizyta wybrany = (Wizyta)wizytyListBox.SelectedItem;
-            if (wybrany != null)
-            {
-                peselSzczegolyLabel.Content = wybrany.pacjent.PESEL;
-                imieSzczegolyLabel.Content = wybrany.pacjent.Imie;
-                nazwiskoSzczegolyLabel.Content = wybrany.pacjent.Nazwisko;
-                DataSzczegolyLabel.Content = wybrany.Data;
-            }
-            else
-            {
-                peselSzczegolyLabel.Content = "";
-                imieSzczegolyLabel.Content = "";
-                nazwiskoSzczegolyLabel.Content = "";
-                DataSzczegolyLabel.Content = "";
-            }
+            peselSzczegolyLabel.Text = wybrany.pacjent.PESEL.ToString();
+            imieSzczegolyLabel.Text = wybrany.pacjent.Imie.ToString();
+            nazwiskoSzczegolyLabel.Text = wybrany.pacjent.Nazwisko.ToString();
+            DataSzczegolyLabel.Text = wybrany.Data.ToString();
         }
 
         private void PrzyjmujBtn_Click(object sender, RoutedEventArgs e)
         {
             Wizyta wybrany = (Wizyta)wizytyListBox.SelectedItem;
-            if(wybrany == null) { return; }
-            DetailsDoctorForm = new DetailsDoctorForm(wybrany,wybrany.pacjent);
+            if (wybrany == null) { return; }
+            DetailsDoctorForm = new DetailsDoctorForm(wybrany, wybrany.pacjent);
             Close();
             DetailsDoctorForm.ShowDialog();
             DoctorForm w = new DoctorForm(PESELDoktora);

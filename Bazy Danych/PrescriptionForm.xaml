@@ -45,7 +45,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Label Grid.ColumnSpan="2" Margin="2" Padding="2">Wyszukaj lek:</Label>
-            <Label Grid.Row="1" Margin="2" Padding="2">Nazwa leku: </Label>
+            <Label Grid.Row="1" Margin="2" Padding="2">Nazwa leku:</Label>
             <TextBox Name="nazwaLeku" Grid.Row="1" Grid.Column="1" Margin="2" Padding="2"></TextBox>
             <ListBox Name="wyszukaneLeki" Grid.Row="2" Height="100" Grid.ColumnSpan="2" Margin="2" Padding="2"></ListBox>
             <Button Click="WyszukajBtn_Click_1" Grid.Row="4" Grid.Column="0" Width="200" Margin="2" Padding="2">Wyszukaj</Button>
@@ -57,7 +57,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Label>Lista leków: </Label>
+            <Label>Lista leków:</Label>
             <ListBox Name="listaLekow" Grid.Row="1" SelectionChanged="listaLekow_SelectionChanged" Margin="2" Padding="2"></ListBox>
             <Button Click="DeleteLekBt_Click" Margin="10" Grid.Row="2" Padding="2">Usuń wybrany lek z listy</Button>
         </Grid>

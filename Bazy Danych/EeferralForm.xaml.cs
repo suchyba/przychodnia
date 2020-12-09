@@ -114,7 +114,7 @@ namespace Bazy_Danych
             int numer_mieszkania = -1;
             if (!String.IsNullOrEmpty(FlatNumberAddPetientBox.Text))
             {
-                
+
                 if (!Int32.TryParse(FlatNumberAddPetientBox.Text, out numer_mieszkania))
                 {
                     FlatNumberAddPetientBox.BorderBrush = Brushes.Red;
@@ -156,7 +156,7 @@ namespace Bazy_Danych
             Pacjent pacjentDb = dataBaseContext.Pacjeci.Where(p => p.PESEL == wizyta.pacjent.PESEL).FirstOrDefault();
             Lekarz lekarzDb = dataBaseContext.Lekarze.Where(p => p.PESEL == wizyta.lekarz.PESEL).FirstOrDefault();
 
-            if(pacjentDb == null || lekarzDb == null)
+            if (pacjentDb == null || lekarzDb == null)
             {
                 throw new Exception();
             }
@@ -164,7 +164,7 @@ namespace Bazy_Danych
 
             if (adresDb == null)
             {
-                 skierowanie = new Skierowanie
+                skierowanie = new Skierowanie
                 {
                     Nazwa_zabiegu = RefferNameOperation.Text,
                     lekarz = lekarzDb,
@@ -175,7 +175,7 @@ namespace Bazy_Danych
             }
             else
             {
-                 skierowanie = new Skierowanie
+                skierowanie = new Skierowanie
                 {
                     Nazwa_zabiegu = RefferNameOperation.Text,
                     lekarz = lekarzDb,
@@ -185,7 +185,18 @@ namespace Bazy_Danych
                 };
             }
 
+            //Pacjent pacjentDb = dataBaseContext.Pacjeci.Where(p=> p.PESEL == wizyta.pacjent.PESEL).FirstOrDefault();
+
+            //Lekarz lekarzDb = dataBaseContext.Lekarze.Where(p => p.PESEL == wizyta.lekarz.PESEL).FirstOrDefault();
+
+            //if (pacjentDb == null || lekarzDb == null)
+            //{
+            //    throw new Exception();
+            //}
+
+            //dataBaseContext.skierowanie.Add(skierowanie);
             dataBaseContext.Skierowania.Add(skierowanie);
+            //lekarzDb.skierowania.Add(skierowanie);
 
             dataBaseContext.SaveChanges();
             MessageBoxResult result = MessageBox.Show("Dodano skierowanie");
