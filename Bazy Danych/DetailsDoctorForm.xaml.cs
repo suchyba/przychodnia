@@ -27,6 +27,8 @@ namespace Bazy_Danych
         public DetailsDoctorForm()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
         }
         public DetailsDoctorForm(Wizyta wizyta,Pacjent p1)
         {
@@ -63,19 +65,19 @@ namespace Bazy_Danych
         private void WypiszSkierowanieBtn_Click(object sender, RoutedEventArgs e)
         {
             EeferralForm skierowanie = new EeferralForm(wizyta1);
-            thisForm.Visibility = Visibility.Collapsed;
+            Close();
             skierowanie.ShowDialog();
-            thisForm.Visibility = Visibility.Visible;
-
-
+            DetailsDoctorForm w = new DetailsDoctorForm(wizyta1,pacjent);
+            w.ShowDialog();
         }
 
         private void WypiszRecepteBtn_Click(object sender, RoutedEventArgs e)
         {
             PrescriptionForm recepta = new PrescriptionForm(wizyta1);
-            this.Visibility = Visibility.Collapsed;
+            Close();
             recepta.ShowDialog();
-            this.Visibility = Visibility.Visible;
+            DetailsDoctorForm w = new DetailsDoctorForm(wizyta1, pacjent);
+            w.ShowDialog();
 
         }
     }
