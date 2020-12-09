@@ -25,6 +25,9 @@ namespace Bazy_Danych
         public EeferralForm()
         {
             InitializeComponent();
+
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
         }
 
         public EeferralForm(Wizyta _wizyta)
@@ -182,18 +185,7 @@ namespace Bazy_Danych
                 };
             }
 
-            //Pacjent pacjentDb = dataBaseContext.Pacjeci.Where(p=> p.PESEL == wizyta.pacjent.PESEL).FirstOrDefault();
-
-            //Lekarz lekarzDb = dataBaseContext.Lekarze.Where(p => p.PESEL == wizyta.lekarz.PESEL).FirstOrDefault();
-
-            //if (pacjentDb == null || lekarzDb == null)
-            //{
-            //    throw new Exception();
-            //}
-
-            //dataBaseContext.skierowanie.Add(skierowanie);
             dataBaseContext.Skierowania.Add(skierowanie);
-            //lekarzDb.skierowania.Add(skierowanie);
 
             dataBaseContext.SaveChanges();
             MessageBoxResult result = MessageBox.Show("Dodano skierowanie");

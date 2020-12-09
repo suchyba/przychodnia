@@ -27,6 +27,8 @@ namespace Bazy_Danych
         public DoctorForm()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
         }
         public DoctorForm(long pesel)
         {
@@ -68,10 +70,12 @@ namespace Bazy_Danych
         private void PrzyjmujBtn_Click(object sender, RoutedEventArgs e)
         {
             Wizyta wybrany = (Wizyta)wizytyListBox.SelectedItem;
-            DetailsDoctorForm = new DetailsDoctorForm(wybrany, wybrany.pacjent);
+            if(wybrany == null) { return; }
+            DetailsDoctorForm = new DetailsDoctorForm(wybrany,wybrany.pacjent);
+            Close();
             DetailsDoctorForm.ShowDialog();
-            wczytajWizyty();
-            wizytyListBox.UpdateLayout();
+            DoctorForm w = new DoctorForm(PESELDoktora);
+            w.ShowDialog();
         }
     }
 }

@@ -33,6 +33,8 @@ namespace Bazy_Danych
         public PrescriptionForm()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
         }
 
         public PrescriptionForm(Wizyta _wizyta)
