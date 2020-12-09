@@ -33,6 +33,8 @@ namespace Bazy_Danych
         public PrescriptionForm()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
         }
 
         public PrescriptionForm(Wizyta _wizyta)
@@ -54,7 +56,7 @@ namespace Bazy_Danych
         }
         private void DeleteLekBt_Click(object sender, RoutedEventArgs e)
         {
-            if(index == -1) { return; }
+            if (index == -1) { return; }
             listaLekow2.RemoveAt(index);
 
             listaLekow.Items.RemoveAt(index);
@@ -64,7 +66,7 @@ namespace Bazy_Danych
 
         private void WypiszeRecepteBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(listaLekow2.Count() == 0)
+            if (listaLekow2.Count() == 0)
             {
                 MessageBoxResult result1 = MessageBox.Show("Nie wybrano żadnych leków");
                 return;
@@ -82,8 +84,8 @@ namespace Bazy_Danych
                 lekarz = lekarzDb,
             };
 
-            
-            for(int i =0;i< listaLekow2.Count();i++)
+
+            for (int i = 0; i < listaLekow2.Count(); i++)
             {
                 Lek lekDb = dataBaseContext.Leki.Where(p => p.ID == listaLekow2[i].ID).FirstOrDefault();
                 LekRecepta lekRecepta = new LekRecepta
@@ -135,7 +137,7 @@ namespace Bazy_Danych
                 Nazwa_leku = l.Nazwa_leku
             };
 
-            
+
             listaLekow2.Add(lek);
             listaLekow.Items.Add(lek);
 

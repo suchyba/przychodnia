@@ -9,6 +9,7 @@ namespace Bazy_Danych.Model
     public class Lekarz
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public  long PESEL { get; set; }
         [Required]
 

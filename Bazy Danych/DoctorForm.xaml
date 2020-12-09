@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bazy_Danych"
         mc:Ignorable="d"
-        Title="Lekarz" Height="450" Width="800">
+        Title="DoctorForm" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -16,9 +16,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label Margin="5">Lista wizyt:</Label>
-        <ListBox Name="wizytyListBox" SelectionChanged="wizytyListBox_SelectionChanged" Grid.Row="1" Margin="5"></ListBox>
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Label Margin="10" Padding="10">Lista wizyt:</Label>
+        <ListBox Name="wizytyListBox" SelectionChanged="wizytyListBox_SelectionChanged" Grid.Row="1" Margin="10" Padding="10"></ListBox>
+        <Grid Grid.Column="1" Grid.Row="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -28,25 +28,25 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Grid.ColumnSpan="2" Margin="5">Szczegóły wizyty</Label>
+            <Label Grid.ColumnSpan="2" Margin="5" Padding="5">Szczegóły wizyty</Label>
 
-            <Label Grid.Row="1" Margin="5">PESEL:</Label>
-            <Label Name="peselSzczegolyLabel" Grid.Row="1" Grid.Column="1" Margin="5"/>
+            <Label Grid.Row="1" Margin="5" Padding="5">PESEL:</Label>
+            <TextBox IsReadOnly="True" Name="peselSzczegolyLabel" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"></TextBox>
 
-            <Label Grid.Row="2" Margin="5">Imię:</Label>
-            <Label Name="imieSzczegolyLabel" Grid.Row="2" Grid.Column="1" Margin="5"/>
+            <Label Grid.Row="2" Margin="5" Padding="5">Imie:</Label>
+            <TextBox IsReadOnly="True" Name="imieSzczegolyLabel" Grid.Row="2" Grid.Column="1" Margin="5" Padding="5"></TextBox>
 
-            <Label Grid.Row="3" Margin="5">Nazwisko:</Label>
-            <Label Name="nazwiskoSzczegolyLabel" Grid.Row="3" Grid.Column="1" Margin="5"/>
+            <Label Grid.Row="3" Margin="5" Padding="5">Nazwisko:</Label>
+            <TextBox IsReadOnly="True" Name="nazwiskoSzczegolyLabel" Grid.Row="3" Grid.Column="1" Margin="5" Padding="5"></TextBox>
 
-            <Label Grid.Row="4" Margin="5">Data:</Label>
-            <Label Name="DataSzczegolyLabel" Grid.Row="4" Grid.Column="1" Margin="5"/>
+            <Label Grid.Row="4" Margin="5" Padding="5">Data:</Label>
+            <TextBox IsReadOnly="True" Name="DataSzczegolyLabel" Grid.Row="4" Grid.Column="1" Margin="5" Padding="5"></TextBox>
 
 
         </Grid>
-        <Button Grid.Column="1" Click="PrzyjmujBtn_Click" Margin="5" Padding="20, 5">Przyjmij na wizytę</Button>
+        <Button Grid.Column="1" Click="PrzyjmujBtn_Click" Margin="10" Padding="5">Przyjmij na wizytę</Button>
     </Grid>
 </Window>
