@@ -9,7 +9,6 @@ namespace Bazy_Danych.Model
     public class Lekarz
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public  long PESEL { get; set; }
         [Required]
 
@@ -30,5 +29,10 @@ namespace Bazy_Danych.Model
         new HashSet<Zabieg>();
         public ICollection<Recepta> recepty { get; set; } =
         new HashSet<Recepta>();
+
+        public override string ToString()
+        {
+            return Imie + " " + Nazwisko;
+        }
     }
 }

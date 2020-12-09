@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Bazy_Danych.Data;
+using Bazy_Danych.Model;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace Bazy_Danych
 {
@@ -17,64 +22,66 @@ namespace Bazy_Danych
     /// </summary>
     public partial class DodajWizyteForm : Window
     {
-        public DodajWizyteForm()
+        public Pacjent ObecnyPacjent { get; set; }
+        public DodajWizyteForm(Pacjent pacjent)
         {
             InitializeComponent();
+            ObecnyPacjent = pacjent;
+
+            using DataBaseContext dataBaseContext = new DataBaseContext();
+            dataBaseContext.Lekarze.Load();
+
+            LekarzComboBox.ItemsSource = dataBaseContext.Lekarze.Local.ToObservableCollection();
+            LekarzComboBox.Items.Refresh();
+
+            LekarzComboBox.SelectedIndex = 0;
+
+            PacjentTextBox.Text = pacjent.Imie + " " + pacjent.Nazwisko;
         }
-        /*private void WizytaBtn_Click(object sender, RoutedEventArgs e)
+        private void WizytaBtn_Click(object sender, RoutedEventArgs e)
         {
-            long PESELPacjeta;
-            long PESELDoktora;
-            DateTime dataWizyty;
+            DataDatePicker.ClearValue(DateTimePicker.BorderBrushProperty);
+            LekarzComboBox.ClearValue(ComboBox.BackgroundProperty);
+            
+            DateTime? dataWizyty = null;
 
-            if (!long.TryParse(PESELTextBox.Text, out PESELPacjeta))
+            bool blad = false;
+            if (DataDatePicker.Value == null)
             {
-                wizytaLabel.Content = "PESEL pacjeta jest nie prawidłowy";
-                return;
+                DataDatePicker.BorderBrush = Brushes.Red;
+                blad = true;
             }
-
-            if (!long.TryParse(DoctorPESELTextBox.Text, out PESELDoktora))
-            {
-                wizytaLabel.Content = "PESEL doktora jest nie prawidłowy";
-                return;
-
-            }
-            if (DateTextBox.Value == null)
-            {
-                wizytaLabel.Content = "Nie wybrano daty";
-                return;
-            }
-            dataWizyty = (DateTime)DateTextBox.Value;
-
-            string opisWizyty = opisTextBox.Text;
+            else
+                dataWizyty = (DateTime)DataDatePicker.Value;
 
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
-            var lekarz = dataBaseContext.Lekarze.Where(p => p.PESEL == PESELDoktora);
-            var pacjent = dataBaseContext.Pacjeci.Where(p => p.PESEL == PESELPacjeta);
+            Lekarz lekarzCombo = LekarzComboBox.SelectedItem as Lekarz;
+            Lekarz lekarz = dataBaseContext.Lekarze.Where(l => l.PESEL == lekarzCombo.PESEL).FirstOrDefault();
 
-            //Wizyta wizyta = new Wizyta
-            //{
-            //    Data = new DateTime(DateTextBox.ToString())
-            //}
-            if (lekarz.Count() > 1 || pacjent.Count() > 1)
+            Pacjent pacjent = dataBaseContext.Pacjeci.Where(p => p.PESEL == ObecnyPacjent.PESEL).FirstOrDefault();
+
+            if (lekarz == null)
             {
+                blad = true;
+            }
+            if (blad)
                 return;
-            }
-            if (lekarz.Count() == 1 && pacjent.Count() == 1)
+
+            Wizyta wizyta = new Wizyta
             {
-                Wizyta wizyta = new Wizyta
-                {
-                    Data = dataWizyty,
-                    Opis = opisWizyty,
-                    lekarz = lekarz.First(),
-                    pacjent = pacjent.First()
-                };
-                lekarz.First().wizyty.Add(wizyta);
-                pacjent.First().wizyty.Add(wizyta);
-                wizytaLabel.Content = "Dodano wizyte";
-            }
+                Data = (DateTime)dataWizyty,
+                Opis = null,
+                lekarz = lekarz,
+                pacjent = pacjent
+            };
+
+
+            dataBaseContext.Wizyty.Add(wizyta);
             dataBaseContext.SaveChanges();
-        }*/
+
+            System.Windows.MessageBox.Show("Dodano wizytę", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
+        }
     }
 }
