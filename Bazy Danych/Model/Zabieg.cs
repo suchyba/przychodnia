@@ -22,7 +22,7 @@ namespace Bazy_Danych.Model
         public RodzajZabiegu rodzajZabiegu { get; set; }
         public override string ToString()
         {
-            return pacjent + " " + Data + "\n" + rodzajZabiegu;
+            return pacjent.Imie + " " + pacjent.Nazwisko + " " + Data.ToString("dd.M.yyyy") + "\n" + rodzajZabiegu;
         }
     }
 }

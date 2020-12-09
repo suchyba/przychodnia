@@ -24,7 +24,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Label Margin="5" Padding="5">Dane pajeta: </Label>
+        <Label Margin="5" Padding="5">Dane pajenta: </Label>
         <Label Grid.Row="1" Margin="5" Padding="5">Imie: </Label>
         <TextBox IsReadOnly="true" Name="referralNamePatient" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5"></TextBox>
         <Label Grid.Row="1" Grid.Column="2" Margin="5" Padding="5">Nazwisko:</Label>

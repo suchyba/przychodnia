@@ -28,7 +28,12 @@ namespace Bazy_Danych
         {
             InitializeComponent();
             ObecnaPielegniarka = pielegniarka;
-            ZabiegiListBox.ItemsSource = pielegniarka.zabiegi;
+
+            using DataBaseContext dataBaseContext = new DataBaseContext();
+            dataBaseContext.Zabiegi.Include(z => z.pielegniarka).Include(z => z.pacjent).Include(z => z.rodzajZabiegu).Load();
+
+            ZabiegiListBox.ItemsSource = dataBaseContext.Zabiegi.Local.Where(z => z.pielegniarka.PESEL == ObecnaPielegniarka.PESEL);
+
             PielengniarkaLabel.Content = pielegniarka.Imie + " " + pielegniarka.Nazwisko;
         }
 

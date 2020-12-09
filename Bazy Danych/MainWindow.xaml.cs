@@ -36,9 +36,9 @@ namespace Bazy_Danych
             userLogin.ClearValue(TextBox.BorderBrushProperty);
             userPassword.ClearValue(TextBox.BorderBrushProperty);
 
-            int login;
+            long login;
 
-            if (!Int32.TryParse(userLogin.Text, out login))
+            if (!Int64.TryParse(userLogin.Text, out login))
             {
                 userLogin.BorderBrush = Brushes.Red;
 
@@ -73,10 +73,8 @@ namespace Bazy_Danych
 
             if (user2 != null)
             {
-
                 if (user2.Password == password)
-                {
-                    
+                {                    
                     this.Visibility = Visibility.Collapsed;
                     nurseForm = new NurseForm(user2);
                     nurseForm.ShowDialog();
@@ -87,13 +85,10 @@ namespace Bazy_Danych
                 }
                 userPassword.BorderBrush = Brushes.Red;
                 return;
-
-
             }
             Wynik.Content = "Podany użytkownik nie istnieje!";
             Wynik.Visibility = Visibility.Visible;
             return;
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

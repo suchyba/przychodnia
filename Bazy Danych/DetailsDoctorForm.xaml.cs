@@ -1,5 +1,6 @@
 ﻿using Bazy_Danych.Data;
 using Bazy_Danych.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Bazy_Danych
         {
             InitializeComponent();
         }
-        public DetailsDoctorForm(Wizyta wizyta,Pacjent p1)
+        public DetailsDoctorForm(Wizyta wizyta, Pacjent p1)
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -41,8 +42,8 @@ namespace Bazy_Danych
         {
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
-            Wizyta wizytaDb = dataBaseContext.Wizyty.Where(p => p.ID == wizyta1.ID).FirstOrDefault();
-            if(wizytaDb == null) { return; }
+            Wizyta wizytaDb = dataBaseContext.Wizyty.Where(p => p.ID == wizyta1.ID).Include(w => w.lekarz).FirstOrDefault();
+            if (wizytaDb == null) { return; }
             peselSzczegolyLabel.Text = pacjent.PESEL.ToString();
             imieSzczegolyLabel.Text = pacjent.Imie;
             nazwiskoSzczegolyLabel.Text = pacjent.Nazwisko;
@@ -62,7 +63,8 @@ namespace Bazy_Danych
 
         private void WypiszSkierowanieBtn_Click(object sender, RoutedEventArgs e)
         {
-            EeferralForm skierowanie = new EeferralForm(wizyta1);
+            using DataBaseContext dataBaseContext = new DataBaseContext();
+            EeferralForm skierowanie = new EeferralForm(dataBaseContext.Wizyty.Where(p => p.ID == wizyta1.ID).Include(w => w.lekarz).Include(w => w.pacjent).FirstOrDefault());
             thisForm.Visibility = Visibility.Collapsed;
             skierowanie.ShowDialog();
             thisForm.Visibility = Visibility.Visible;
@@ -72,7 +74,8 @@ namespace Bazy_Danych
 
         private void WypiszRecepteBtn_Click(object sender, RoutedEventArgs e)
         {
-            PrescriptionForm recepta = new PrescriptionForm(wizyta1);
+            using DataBaseContext dataBaseContext = new DataBaseContext();
+            PrescriptionForm recepta = new PrescriptionForm(dataBaseContext.Wizyty.Where(p => p.ID == wizyta1.ID).Include(w => w.lekarz).Include(w => w.pacjent).FirstOrDefault());
             this.Visibility = Visibility.Collapsed;
             recepta.ShowDialog();
             this.Visibility = Visibility.Visible;

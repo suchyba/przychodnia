@@ -38,7 +38,7 @@ namespace Bazy_Danych
         {
             using DataBaseContext dataBaseContext = new DataBaseContext();
 
-            dataBaseContext.Wizyty.Include("pacjent").Where(p => p.lekarz.PESEL == PESELDoktora && p.Opis == null).Load();
+            dataBaseContext.Wizyty.Include(w => w.pacjent).Include(w => w.lekarz).Where(p => p.lekarz.PESEL == PESELDoktora && p.Opis == null).Load();
 
             var wizyty = dataBaseContext.Wizyty.Local.ToObservableCollection();
 
